@@ -1,2 +1,5 @@
 groq
 textblob
+streamlit
+pdfplumber
+pytesseract
