@@ -46,16 +46,22 @@ class ChatSummarizer:
         if not chat_text.strip():
             return "No valid user-bot exchanges found in chat history."
 
-        prompt = (
-    "You are a legal assistant summarizing a chat between a client and an advocate."
-    "Act very professional and Provide a structured summary in a format that allows the advocate to quickly grasp the case details. Don't add any other additional lines other than the summary"
-    "Ensure clarity and conciseness. Structure the summary as follows:\n\n"
-    "**Client's Name and Gender along with occupation:**\n"
-    "**Client's Issue:** (Briefly describe the main concern of the client.)\n"
-    "Here is the chat transcript:\n\n"
-    f"{chat_text}"
-)
+        prompt = f"""
+        You are a legal assistant summarizing a conversation between a client and an AI assistant. 
+        Your task is to provide a **concise and structured summary** of the client's details and their case **without adding any extra commentary or unnecessary information**.
+        
+        **Important Guidelines:**
+        1. **Extract only relevant case details**—do not fabricate or interpret anything beyond what the user has stated.
+        2. **Do NOT add assumptions, legal advice, or any AI-generated filler text.**
+        3. **Structure the summary as follows:**
+            - **Client’s Name, Gender, and Occupation:** Extracted from the chat.
+            - **Client’s Issue:** Clearly summarize the legal concern they described.
+            - **Key Details Provided:** Mention only essential information that would help the advocate assess the case.
+            - **Additional Notes (if applicable):** If the client mentioned any deadlines, evidence, or specific concerns.
 
+        **Chat Transcript:**
+        {chat_text}
+        """
 
         try:
             response = self.client.chat.completions.create(

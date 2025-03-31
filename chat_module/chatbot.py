@@ -8,8 +8,8 @@ class ChatBot:
         self.model_name = model_name
         self.chat_history_file = chat_history_file
         self.chat_history = self.load_chat_history()
-        self.user_details = {}  # Stores user information
-        self.case_details = {}  # Stores case-related details
+        self.user_details = {}  
+        self.case_details = {}  
         self.intro_message = (
             "\n🤖 Lex: Hello! I'm Lex, your legal assistant. Please note that I am **not a lawyer**, "
             "but I will collect important details for the advocate. This helps them decide if an appointment is needed.\n"
@@ -35,8 +35,7 @@ class ChatBot:
             with open(self.chat_history_file, "w") as file:
                 json.dump(data, file, indent=4)
         except Exception as e:
-            print(f"⚠ Error saving chat history: {e}")  
-
+            print(f"Error saving chat history: {e}")  
 
     def collect_basic_info(self):
         """Ensures Name, Gender, and Occupation are collected before starting case discussion."""
@@ -58,29 +57,31 @@ class ChatBot:
         )
 
     def get_response(self, user_input):
-        #Generates chatbot response while maintaining context.
-        # Ensure chat history is not empty before generating response
+        # Generates chatbot response while maintaining context.
         prompt = f"""
         You are Lex, an AI legal assistant. Your job is ONLY to collect details about a case for an advocate.
         You are NOT a lawyer and must NOT provide legal advice. Your role is to help determine if an appointment is necessary.
 
-        User Details Collected:
+        **IMPORTANT RULES:**
+        1. **NEVER** ask the same question again if it has already been answered.
+        2. **ALWAYS** remember the details the user has provided and refer back to them when needed.
+        3. **DO NOT** reset the conversation or forget previously collected details.
+        4. **DO NOT** ask "What is your case?" or "What is your problem?" again and again. Instead, **build upon what has already been shared.**
+        5. Naturally guide the conversation by **only asking for missing information**.
+        6. Maintain **full conversation context** throughout the interaction.
+        7. **DO NOT** give legal advice. Instead, focus on gathering information for the advocate.
+        8. Keep asking if the user has anything else to share to ensure a complete picture.
+        9. End the chat with a friendly and professional closing message.
+
+        **User Details Collected:**
         - Name: {self.user_details.get('name', 'Not Provided')}
         - Gender: {self.user_details.get('gender', 'Not Provided')}
         - Occupation: {self.user_details.get('occupation', 'Not Provided')}
 
-        Case Details Collected So Far:
+        **Case Details Collected So Far:**
         {json.dumps(self.case_details, indent=4)}
 
-        Guidelines:
-        1. If the user has already provided an answer, do NOT ask the same question again.
-        2. Naturally guide the conversation by **asking for missing information**.
-        3. Maintain context and ask only questions relevant to their discussion.
-        4. **DO NOT give legal advice.** Instead, focus on gathering information for the advocate.
-        5. Don't repeat the questions again and again.
-        6. Keep asking if they have anything else to share.
-        7. End the chat with a friendly closing message.
-
+        **User Input:**
         User: {user_input}
         AI:"""
 

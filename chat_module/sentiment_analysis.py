@@ -22,10 +22,10 @@ class EmotionRecognizer:
                         if isinstance(chat_history, list) and all(isinstance(entry, dict) for entry in chat_history):
                             return chat_history  
                         else:
-                            print("⚠ Chat history is corrupted. Resetting to empty list.")
+                            print("Chat history is corrupted. Resetting to empty list.")
                             return []
                     else:
-                        print("⚠ Invalid chat history format. Resetting to empty list.")
+                        print("Invalid chat history format. Resetting to empty list.")
                         return []
             except json.JSONDecodeError:
                 print("Error reading chat history. Resetting to empty list.")
