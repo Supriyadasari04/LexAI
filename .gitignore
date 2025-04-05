@@ -1,3 +1,5 @@
 venv
 .env
 chat_history.json
+summaries.json
+api_stuff.txt
