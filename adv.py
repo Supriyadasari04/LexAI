@@ -8,7 +8,6 @@ st.title("📂 Lex - Advocate Dashboard")
 
 st.markdown("Search, filter, and manage all submitted case summaries below.")
 
-# --- Load & Save Functions ---
 def load_summaries():
     if os.path.exists("summaries.json"):
         with open("summaries.json", "r") as file:
@@ -22,22 +21,20 @@ def save_summaries(data):
     with open("summaries.json", "w") as file:
         json.dump(data, file, indent=4)
 
-# --- Load Data ---
 summaries = load_summaries()
 
-# Ensure "status" exists
 for s in summaries:
     if "status" not in s:
         s["status"] = "Pending"
 
-# --- Sidebar Filters ---
+#Sidebar Filters
 st.sidebar.header("🔎 Filters")
 
 search_query = st.sidebar.text_input("Search by Email or Case ID")
 status_filter = st.sidebar.selectbox("Filter by Status", ["All", "Pending", "Reviewed", "Accepted"])
 sort_order = st.sidebar.selectbox("Sort by Date", ["Newest First", "Oldest First"])
 
-# --- Apply Filters ---
+# Apply Filters
 if search_query:
     summaries = [
         s for s in summaries
@@ -52,7 +49,7 @@ summaries.sort(
     reverse=(sort_order == "Newest First")
 )
 
-# --- Display ---
+# Display
 if summaries:
     for idx, summary in enumerate(summaries):
         with st.expander(f"🧾 Case ID: {summary['case_id']} | {summary['timestamp']}"):
