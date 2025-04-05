@@ -4,7 +4,7 @@ import groq
 
 class ChatSummarizer:
     def __init__(self, model_name="llama3-8b-8192", chat_history_file="chat_history.json",
-                 api_key="your_api_key"):
+                 api_key="your_api_here"):
         self.client = groq.Client(api_key=api_key)
         self.model_name = model_name
         self.chat_history_file = chat_history_file
