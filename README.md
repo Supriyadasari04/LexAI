@@ -57,7 +57,7 @@ The purpose of LexAI is to reduce the manual burden on advocates by:
 ---
 ## 🔐 API Usage
 
-- For Chat Assistant: You'll need a groq API key. You can get one from here - [https://console.groq.com/keys]
+- For Chat Assistant: You'll need a groq API key. You can get one from here - [https://console.groq.com]
 - For Summarization: The summarizer in `docs.py` uses Hugging Face Transformers and the model `facebook/bart-large-cnn`. No need to install or generate any API for this.
 
 ---
