@@ -64,7 +64,7 @@ The purpose of LexAI is to reduce the manual burden on advocates by:
 ## 🛠️ Steps to run
 1. Clone the repo:
    ```
-   git clone https://github.com/Keerthanareddy17/LexAI.git
+   git clone https://github.com/Supriyadasari04/LexAI.git
    cd LexAI
    ```
 2. Install dependencies:
@@ -94,9 +94,9 @@ The purpose of LexAI is to reduce the manual burden on advocates by:
 ---
 
 Feel free to reach out for feedback or queries -
-📧 Email: katasanikeerthanareddy@gmail.com
+📧 Email: dasarisupriya3012@gmail.com
 
-🔗 LinkedIn: [linkedin.com/in/keerthana-reddy-katasani-b07238268](https://www.linkedin.com/in/keerthana-reddy-katasani-b07238268/)
+🔗 LinkedIn: [www.linkedin.com/in/supriyadasarii](www.linkedin.com/in/supriyadasarii)
 
 ---
 ## 📷 Snapshots of LexAI

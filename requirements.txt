@@ -3,3 +3,6 @@ streamlit
 pdfplumber
 pytesseract
 openai
+transformers
+torch
+# tensorflow
